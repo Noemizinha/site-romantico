@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Para você 💖</title>
+
+<style>
+body {
+    background: linear-gradient(to bottom, #ffb6c1, #ff69b4);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 35px;
+}
+
+button {
+    background-color: white;
+    color: #ff4da6;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#mensagem {
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+#personagem {
+    position: absolute;
+    bottom: 50px;
+    left: -150px;
+    width: 120px;
+    image-rendering: pixelated;
+}
+
+/* animação andando */
+@keyframes andar {
+    0% { left: -150px; }
+    100% { left: 100vw; }
+}
+
+/* corações */
+.heart {
+    position: absolute;
+    color: pink;
+    font-size: 20px;
+    animation: cair 5s linear infinite;
+}
+
+@keyframes cair {
+    0% {transform: translateY(-10px);}
+    100% {transform: translateY(100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<h1>💖 Você desbloqueou meu coração 💖</h1>
+
+<p>Clique e veja o que eu sinto...</p>
+
+<button onclick="iniciar()">💌 Clique aqui</button>
+
+<div id="mensagem"></div>
+
+<!-- personagem -->
+<img id="personagem" src="personagem.png">
+
+<!-- música -->
+<audio id="musica" loop>
+    <source src="apocalypse.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function iniciar() {
+
+    document.getElementById("mensagem").innerHTML =
+    "Você é meu player favorito 🎮💖";
+
+    document.getElementById("musica").play();
+
+    let personagem = document.getElementById("personagem");
+    personagem.style.animation = "andar 6s linear forwards";
+
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
