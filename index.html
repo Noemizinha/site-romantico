@@ -1,107 +1,294 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
 <meta charset="UTF-8">
-<title>Para você 💖</title>
+
+<title>Para Luiz Gabriel 💖</title>
 
 <style>
-body {
-    background: linear-gradient(to bottom, #ffb6c1, #ff69b4);
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 50px;
-    color: white;
-    overflow: hidden;
+
+body{
+background: linear-gradient(#ffb6c1,#ff69b4);
+font-family: Arial;
+text-align:center;
+padding:40px;
+color:white;
+overflow:hidden;
 }
 
-h1 {
-    font-size: 35px;
+h1{
+font-size:35px;
 }
 
-button {
-    background-color: white;
-    color: #ff4da6;
-    border: none;
-    padding: 15px 25px;
-    font-size: 18px;
-    border-radius: 20px;
-    cursor: pointer;
+#botao{
+background:white;
+color:#ff4da6;
+border:none;
+padding:15px 30px;
+font-size:20px;
+border-radius:30px;
+cursor:pointer;
+transition:.4s;
 }
 
-#mensagem {
-    margin-top: 20px;
-    font-size: 22px;
+#botao:hover{
+transform:scale(1.15);
 }
 
-#personagem {
-    position: absolute;
-    bottom: 50px;
-    left: -150px;
-    width: 120px;
-    image-rendering: pixelated;
+#mensagem{
+margin-top:25px;
+font-size:26px;
+min-height:40px;
 }
 
-/* animação andando */
-@keyframes andar {
-    0% { left: -150px; }
-    100% { left: 100vw; }
+#carta{
+display:none;
+background:white;
+color:#ff4da6;
+padding:25px;
+border-radius:20px;
+width:350px;
+margin:30px auto;
+box-shadow:0 0 30px rgba(0,0,0,.25);
+animation:aparecer 2s;
 }
 
-/* corações */
-.heart {
-    position: absolute;
-    color: pink;
-    font-size: 20px;
-    animation: cair 5s linear infinite;
+@keyframes aparecer{
+from{
+opacity:0;
+transform:scale(.7);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
 }
 
-@keyframes cair {
-    0% {transform: translateY(-10px);}
-    100% {transform: translateY(100vh);}
+#final{
+display:none;
+margin-top:25px;
+font-size:22px;
+animation:aparecer 3s;
 }
+
+#personagem{
+position:absolute;
+bottom:30px;
+left:-150px;
+width:120px;
+}
+
+@keyframes andar{
+0%{left:-150px;}
+100%{left:110vw;}
+}
+
+.heart{
+position:absolute;
+font-size:22px;
+animation:cair 6s linear infinite;
+}
+
+@keyframes cair{
+0%{
+transform:translateY(-10px);
+opacity:1;
+}
+100%{
+transform:translateY(100vh);
+opacity:0;
+}
+}
+
+#contador{
+margin-top:10px;
+font-size:18px;
+}
+
+#finalbotao{
+display:none;
+background:white;
+color:#ff4da6;
+border:none;
+padding:12px 25px;
+font-size:18px;
+border-radius:20px;
+cursor:pointer;
+margin-top:15px;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<h1>💖 Você desbloqueou meu coração 💖</h1>
+<h1>💖 Luiz Gabriel 💖</h1>
 
-<p>Clique e veja o que eu sinto...</p>
+<p>Clique e veja algo especial...</p>
 
-<button onclick="iniciar()">💌 Clique aqui</button>
+<button id="botao" onclick="iniciar()">
+💌 Abrir
+</button>
 
 <div id="mensagem"></div>
 
-<!-- personagem -->
+<div id="contador"></div>
+
+<div id="carta">
+
+<h2>Para você</h2>
+
+<p>
+Desde <b>08/06/2024</b> quando nos amávamos,
+você marcou minha vida.
+</p>
+
+<p>
+Algumas pessoas passam,
+outras permanecem dentro da gente.
+</p>
+
+<p>
+E você permanece.
+💖
+</p>
+
+</div>
+
+<button id="finalbotao" onclick="final()">
+Ver última mensagem 💖
+</button>
+
+<div id="final">
+
+<p>Uma parte de mim sempre vai te amar.</p>
+
+<p>Você foi meu primeiro amor verdadeiro.</p>
+
+<p>Espero que você seja feliz, mesmo que não seja comigo.</p>
+
+</div>
+
 <img id="personagem" src="personagem.png">
 
-<!-- música -->
 <audio id="musica" loop>
-    <source src="apocalypse.mp3" type="audio/mpeg">
+<source src="apocalypse.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function iniciar() {
 
-    document.getElementById("mensagem").innerHTML =
-    "Você é meu player favorito 🎮💖";
+let texto =
+"Luiz Gabriel, você sempre vai ser importante pra mim...";
 
-    document.getElementById("musica").play();
+let i=0;
 
-    let personagem = document.getElementById("personagem");
-    personagem.style.animation = "andar 6s linear forwards";
+function escrever(){
 
-    setInterval(() => {
-        let heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "💖";
-        heart.style.left = Math.random() * 100 + "vw";
-        document.body.appendChild(heart);
+if(i<texto.length){
 
-        setTimeout(() => heart.remove(), 5000);
-    }, 300);
+document.getElementById("mensagem")
+.innerHTML+=texto.charAt(i);
+
+i++;
+
+setTimeout(escrever,70);
+
 }
+
+}
+
+function contador(){
+
+let inicio =
+new Date("2024-06-08");
+
+let hoje =
+new Date();
+
+let dias =
+Math.floor(
+(hoje-inicio)/
+(1000*60*60*24)
+);
+
+document.getElementById("contador")
+.innerHTML=
+
+"Dias desde 08/06/2024: "+
+dias+" 💖";
+
+}
+
+function iniciar(){
+
+let musica =
+document.getElementById("musica");
+
+musica.volume=.6;
+
+musica.play().catch(()=>{
+
+document.addEventListener("click",()=>{
+
+musica.play();
+
+},{once:true});
+
+});
+
+document.getElementById("botao")
+.style.display="none";
+
+document.getElementById("carta")
+.style.display="block";
+
+document.getElementById("finalbotao")
+.style.display="inline-block";
+
+escrever();
+
+contador();
+
+let personagem =
+document.getElementById("personagem");
+
+personagem.style.animation=
+"andar 10s linear forwards";
+
+setInterval(()=>{
+
+let heart=
+document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="💖";
+
+heart.style.left=
+Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+},350);
+
+}
+
+function final(){
+
+document.getElementById("final")
+.style.display="block";
+
+}
+
 </script>
 
 </body>
+
 </html>
